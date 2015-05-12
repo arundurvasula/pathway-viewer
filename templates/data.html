@@ -1,23 +1,31 @@
 <meta charset="UTF-8">
 <html>
-<link type="text/css" rel="stylesheet" href="https://raw.githubusercontent.com/jmvillaveces/biojs-vis-keggviewer/master/css/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="https://raw.githubusercontent.com/jmvillaveces/biojs-vis-keggviewer/master/css/jquery-ui.css">
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
-<script src="{{ url_for('static', filename='biojs-vis-keggviewer1.0.1.js') }}"></script>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="/static/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='biojs-vis-keggviewer1.0.1.js') }}"></script>
 
-<div id='selections'>
-{% if multiple_genes %}
-Please select a pathway:
-<select id='selected-pathway' onChange='clearBox("pathway-viewer");pathway=this.value;rerun()'>
-    {% for item in pathway %}
-        <option value={{ item }}>{{ item }}</option>
-    {% endfor %}
-</select>
-{% endif %}
+<div class="offset1 span2">
+    <div id='selections'>
+        {% if multiple_genes %}
+            <h4>Please select a pathway:</h4>
+            <br>
+            <select id='selected-pathway' onChange='clearBox("pathway-viewer");pathway=this.value;rerun()'>
+                {% for item in pathway %}
+                    <option value={{ item }}>{{ item }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+    </div>
 </div>
-
-<div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
+<div class="offset4">
+    <div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
+</div>
 
 <script>
     var rootDiv = document.getElementById('pathway-viewer');
@@ -30,7 +38,7 @@ Please select a pathway:
 
     {% if multiple_genes %}
         var e = document.getElementById('selected-pathway');
-         pathway = e.options[e.selectedIndex].value;
+        pathway = e.options[e.selectedIndex].value;
     {% else %}
         var pathway = '{{ pathway }}'
     {% endif %}   

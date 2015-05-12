@@ -240,8 +240,8 @@ var renderPathway = function(data, target){
         var graphics = entry.find('graphics');
             
         var text_valign = 'center', 
-            shape = 'rectangle',
-            bkg_color = '#99ff99',
+            shape = 'roundrectangle',
+            bkg_color = '#378B2E',
             opacity = 0.9,
             border_width = 0,
             width = $(graphics).attr('width'),
@@ -252,13 +252,13 @@ var renderPathway = function(data, target){
         }else if(type == 'ortholog'){
             border_width = 2;
         }else if(type == 'compound'){
-            shape = 'ellipse';
-            bkg_color = '#aaaaee';
+            shape = 'roundrectangle';
+            bkg_color = '#D4986A';
             text_valign = 'bottom';
             opacity = 1
         }else if(type == 'map'){
             shape = 'roundrectangle';
-            bkg_color = '#00bfff';
+            bkg_color = '#7788AA';
         }else if( type == 'group'){
             //shape = 'roundrectangle';
             //bkg_color = '#ffffff';

@@ -2,18 +2,28 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
+    <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathway viewer</title>
 
+    <div class="offset1">
+	    <h1>Pathway viewer</h1>
+    </div>
 </head>
 <body>
 
-
-<form action="/data" method="POST">
-    <textarea name="gene-names"></textarea>
-    <!-- <input type="text" name="gene-names"> -->
-    <input type="submit" name="my-form" value="Send">
-</form>
+<div class="offset1 span4">
+	<form action="/data" method="POST">
+		<div class="input-group">
+		    <textarea autofocus name="gene-names" class="form-control custom-control" rows="10" style="resize:none;" placeholder="FLOT1"></textarea>
+		    <br>
+		    <input type="submit" class="btn btn-default" name="my-form" value="Send">
+		</div>
+	</form>
+</div>
 
 
 
