@@ -2,7 +2,6 @@
 <html>
 <link type="text/css" rel="stylesheet" href="https://raw.githubusercontent.com/jmvillaveces/biojs-vis-keggviewer/master/css/jquery-ui.css">
 
-
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
 <script src="{{ url_for('static', filename='biojs-vis-keggviewer1.0.1.js') }}"></script>
@@ -21,43 +20,31 @@ Please select a pathway:
 <div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
 
 <script>
-var rootDiv = document.getElementById('pathway-viewer');
-var biojsviskegg = require("biojs-vis-keggviewer");
+    var rootDiv = document.getElementById('pathway-viewer');
+    var biojsviskegg = require("biojs-vis-keggviewer");
 
-var expression = {
-    upColor:'red',
-    downColor:'blue',
-    //genes: ['hsa:7248', 'hsa:51763', 'hsa:2002', 'hsa:2194'],
-    genes:['{{ genes }}'],
-    conditions: [
-        {
-            name: 'condition 1',
-            values: [-1]
-        }
-    ]
-};
-        
-// Use heroku proxy
-var proxy = function(url){
-    return 'https://cors-anywhere.herokuapp.com/'+url;
-};
+    // Use heroku proxy
+    var proxy = function(url){
+        return 'https://cors-anywhere.herokuapp.com/'+url;
+    };
 
-{% if multiple_genes %}
-var e = document.getElementById('selected-pathway');
-var pathway = e.options[e.selectedIndex].value;
-{% else %}
-var pathway = '{{ pathway }}'
-{% endif %}   
+    {% if multiple_genes %}
+        var e = document.getElementById('selected-pathway');
+         pathway = e.options[e.selectedIndex].value;
+    {% else %}
+        var pathway = '{{ pathway }}'
+    {% endif %}   
 
-var rerun = function() {  
-	biojsviskegg.pathway(pathway).proxy(proxy).expression(expression).target(rootDiv).init();
-}
+    function rerun() {  
 
-function clearBox(elementID)
-{
-    document.getElementById(elementID).innerHTML = "";
-}
-rerun()
+        biojsviskegg.pathway(pathway).proxy(proxy).target(rootDiv).init();
+    }
+
+    function clearBox(elementID)
+    {
+        document.getElementById(elementID).innerHTML = "";
+    }
+    rerun()
 
 </script>
 
