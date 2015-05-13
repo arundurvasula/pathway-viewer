@@ -18,11 +18,19 @@
 <div class="offset1 span4">
 	<form action="/data" method="POST">
 		<div class="input-group">
+			Enter KEGG gene names here:
 		    <textarea autofocus name="gene-names" class="form-control custom-control" rows="10" style="resize:none;" placeholder="FLOT1"></textarea>
 		    <br>
-		    <input type="submit" class="btn btn-default" name="my-form" value="Send">
+		    <div align="left">
+		    	<input type="submit" class="btn btn-default" name="my-form" value="Send">
+		    </div>
 		</div>
 	</form>
+</div>
+<div class="span2">
+	<span class="icon icon-question-sign"></span>
+	<p>This application uses the KEGG API to determine which metabolic pathways are present in a given sample and allows for interactive visualization of the pathways.</p>
+	<a href="https://github.com/arundurvasula/pathway-viewer">Github</a>
 </div>
 
 
