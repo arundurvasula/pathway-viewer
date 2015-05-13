@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='biojs-vis-keggviewer1.0.1.js') }}"></script>
 
+<title>Pathway viewer</title>
+
 <div class="offset1 span2">
     <div id='selections'>
         {% if multiple_genes %}
@@ -17,10 +19,11 @@
             <br>
             <select id='selected-pathway' onChange='clearBox("pathway-viewer");pathway=this.value;rerun()'>
                 {% for item in pathway %}
-                    <option value={{ item }}>{{ item }}</option>
+                    <option value={{ item }}>{{ pathway_name[pathway.index(item)] }}</option>
                 {% endfor %}
             </select>
         {% endif %}
+        <p>Genes requested: {{ genes_req }}</p>
     </div>
 </div>
 <div class="offset4">
