@@ -27,7 +27,7 @@
 
 <title>Pathway viewer</title>
 
-<div class="offset1 span3">
+<div class="span3">
     <div id='selections'>
         {% if multiple_genes %}
             <h4>Please select a pathway:</h4>
@@ -46,17 +46,14 @@
                 <div id="geneinfo" style="display:none;"> {{ gene_info }}</div>
             {% else %}
                 {% for gene in genes_req %}
-                    <a href='#' onclick="showhide('{{ loop.index0 }}'); return(false);">{{ gene }}</a>
+                    <p><a href='#' onclick="showhide('{{ loop.index0 }}'); return(false);">{{ gene }}</a></p>
                     <div id="{{ loop.index0 }}" style="display:none;"> {{ gene_info[loop.index0] }}</div>
-<!--                     {{ gene }}
-                    {% if gene != genes_req[-1] %}
-                        ,
-                    {% endif %}  -->
                 {% endfor %}
             {% endif %}
         </p>
     </div>
 </div>
+
 <div class="offset4">
     <div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
 </div>
