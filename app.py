@@ -6,11 +6,12 @@ import requests
 app = flask.Flask(__name__)
 
 def get_pathway(gene):
+	"""parse KEGG's flatfiles and return relevant information"""
 	r = requests.get('http://rest.kegg.jp/find/genes/'+gene)
 	first_line = r.content.split("\n")[0]
 	first_gene = first_line.split("\t")[0]
 	gene = requests.get('http://rest.kegg.jp/get/'+first_gene).content.split("\n")
-	pathway = filter(lambda x:'PATHWAY' in x, gene)[0].split("\t")[0].split(" ")[5]
+	pathway = filter(lambda x:'PATHWAY' in x, gene)[0].split("\t")[0].split(" ")[5] #ugly code for parsing KEGG's flatfiles
 	pathway_name = filter(lambda x:'PATHWAY' in x, gene)[0].split("\t")[0].split(" ")[7:]
 	pathway_name = " ".join(pathway_name)
 	return pathway, first_gene, pathway_name
@@ -33,6 +34,7 @@ def data():
 	if "\n" not in flask.request.form['gene-names']:
 		data = flask.request.form['gene-names']
 		pathway, gene, pathway_name = get_pathway(data)
+		data = "".join(data)
 	else:
 		multiple_genes = True
 		data = flask.request.form['gene-names'].split("\n")

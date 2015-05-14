@@ -23,7 +23,19 @@
                 {% endfor %}
             </select>
         {% endif %}
-        <p>Genes requested: {{ genes_req }}</p>
+        <p>
+            Genes requested:
+            {% if not multiple_genes %}
+                {{ genes_req }}
+            {% else %}
+                {% for gene in genes_req %} 
+                    {{ gene }}
+                    {% if gene != genes_req[-1] %}
+                        ,
+                    {% endif %} 
+                {% endfor %}
+            {% endif %}
+        </p>
     </div>
 </div>
 <div class="offset4">
