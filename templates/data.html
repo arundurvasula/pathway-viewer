@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <html>
+<head>
     <link type="text/css" rel="stylesheet" href="https://raw.githubusercontent.com/jmvillaveces/biojs-vis-keggviewer/master/css/jquery-ui.css">
 
     <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -9,6 +10,20 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='biojs-vis-keggviewer1.0.1.js') }}"></script>
+    <script type="text/javascript">
+        function showhide(id)
+            {
+                if (document.getElementById)
+                {
+                    obj = document.getElementById(id);
+                    if (obj.style.display == "none")    //check if already hidden, if yes make it appear
+                         obj.style.display = "";
+                    else
+                         obj.style.display = "none";    //if already appearing then hide here
+                }
+            }
+    </script>
+</head>
 
 <title>Pathway viewer</title>
 
@@ -25,20 +40,24 @@
         {% endif %}
         <p>
             Genes requested:
+            <br>
             {% if not multiple_genes %}
-                {{ genes_req }}
+                <a href='#' onclick="showhide('geneinfo'); return(false);">{{ genes_req }}</a>
+                <div id="geneinfo" style="display:none;"> {{ gene_info }}</div>
             {% else %}
-                {% for gene in genes_req %} 
-                    {{ gene }}
+                {% for gene in genes_req %}
+                    <a href='#' onclick="showhide('{{ loop.index0 }}'); return(false);">{{ gene }}</a>
+                    <div id="{{ loop.index0 }}" style="display:none;"> {{ gene_info[loop.index0] }}</div>
+<!--                     {{ gene }}
                     {% if gene != genes_req[-1] %}
                         ,
-                    {% endif %} 
+                    {% endif %}  -->
                 {% endfor %}
             {% endif %}
         </p>
     </div>
 </div>
-<div class="offset4">
+<div class="offset3">
     <div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
 </div>
 
