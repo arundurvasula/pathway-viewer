@@ -27,7 +27,7 @@
 
 <title>Pathway viewer</title>
 
-<div class="offset1 span2">
+<div class="offset1 span3">
     <div id='selections'>
         {% if multiple_genes %}
             <h4>Please select a pathway:</h4>
@@ -39,7 +39,7 @@
             </select>
         {% endif %}
         <p>
-            Genes requested:
+            <h5>Genes requested:</h5>
             <br>
             {% if not multiple_genes %}
                 <a href='#' onclick="showhide('geneinfo'); return(false);">{{ genes_req }}</a>
@@ -57,7 +57,7 @@
         </p>
     </div>
 </div>
-<div class="offset3">
+<div class="offset4">
     <div id='pathway-viewer' style='left:350px; top:350px; position=relative;height=500px;width=100%'></div>
 </div>
 
