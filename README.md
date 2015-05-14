@@ -6,3 +6,6 @@ Dependecies:
 - Flask
 
 This is a simple application that takes your input gene, matches it against the KEGG database, and returns all pathways that your genes are related to. It relies on the KEGG REST API and visualizes networks using the BioJS KEGG Viewer. 
+
+Inline-style: 
+![Screenshot](http://i.imgur.com/NwEu4vM.png)
