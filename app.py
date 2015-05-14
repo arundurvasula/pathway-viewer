@@ -37,7 +37,13 @@ def data():
 		data = "".join(data)
 	else:
 		multiple_genes = True
-		data = flask.request.form['gene-names'].split("\n")
+		if flask.request.form['gene-names'].split("\n")[-1] == u"": #handles the case of trailing newlines
+			multiple_genes = False
+			data = flask.request.form['gene-names'].split("\n")[0].split("\r")[0]
+			pathway, gene, pathway_name = get_pathway(data)
+			return flask.render_template("data.html", multiple_genes=multiple_genes, pathway=pathway, genes=gene, genes_req=data, pathway_name=pathway_name)
+		else:
+			data = flask.request.form['gene-names'].split("\n")
 		pathway = []
 		gene = []
 		pathway_name = []
