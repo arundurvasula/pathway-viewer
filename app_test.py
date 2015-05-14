@@ -14,13 +14,13 @@ class AppTestCase(unittest.TestCase):
 	def test_one_gene(self):
 		test = app.test_client(self)
 		form = {'gene_names': "FLOT1"}
-		rv = test.post('/data', data=form)
+		rv = test.post('/data', data=form, follow_redirects=True)
 		assert "FLOT1" in rv.data
 
 	def test_multiple_genes(self):
 		test = app.test_client(self)
 		form = {'gene_names': "FLOT1\nGALM"}
-		rv = test.post('/data', data=form)
+		rv = test.post('/data', data=form, follow_redirects=True)
 		print rv.data
 		assert "Insulin signalling pathway" in rv.data
 
